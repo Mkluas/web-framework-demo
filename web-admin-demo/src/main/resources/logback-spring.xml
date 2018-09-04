@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" debug="false">
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{mm:ss.SSS} %-5level %-36.36logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="INFO"/>
+
+    <if condition='property("os.name").contains("Mac OS")'>
+        <then>
+            <!--<springProfile name="dev">-->
+                <!--<root level="DEBUG">-->
+                    <!--<appender-ref ref="CONSOLE" />-->
+                <!--</root>-->
+            <!--</springProfile>-->
+            <root level="INFO">
+                <appender-ref ref="CONSOLE" />
+            </root>
+        </then>
+        <else>
+            <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>/data/wwwlogs/info.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>info.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>15</maxHistory>
+                    <totalSizeCap>2GB</totalSizeCap>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{HH:mm:ss.SSS} [%-15.15thread] %-5level %-40.40logger{40} - %msg%n</pattern>
+                </encoder>
+            </appender>
+            <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <file>/data/wwwlogs/error.log</file>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>info.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxFileSize>150MB</maxFileSize>
+                    <maxHistory>15</maxHistory>
+                    <totalSizeCap>2GB</totalSizeCap>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{HH:mm:ss.SSS} [%-15.15thread] %-5level %-40.40logger{40} - %msg%n</pattern>
+                </encoder>
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+            </appender>
+            <root level="INFO">
+                <appender-ref ref="CONSOLE" />
+                <appender-ref ref="INFO" />
+                <appender-ref ref="ERROR" />
+            </root>
+        </else>
+    </if>
+
+</configuration>
