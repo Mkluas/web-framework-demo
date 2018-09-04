@@ -9,15 +9,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>web-framework-demo</artifactId>
+    <artifactId>web-weixin-demo</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>cn.mklaus.framework</groupId>
-            <artifactId>web-framework</artifactId>
-            <version>0.1.6</version>
+            <artifactId>web-weixin</artifactId>
+            <version>0.1.0</version>
         </dependency>
     </dependencies>
-
 
 </project>

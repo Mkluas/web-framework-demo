@@ -37,7 +37,7 @@ public class ApiController {
     public JSONObject uptoken(String name, Integer age) {
         List<String> apiList = apiService.listApi();
         return Response.ok()
-                .put("name", name)
+                .put("name", "xieshen")
                 .put("age", age)
                 .put("apiList", apiList)
                 .build();
