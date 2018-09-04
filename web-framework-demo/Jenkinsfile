@@ -1,0 +1,30 @@
+ pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+
+        stage('Deliver') {
+            steps {
+                sh '''
+                    APP=web-demo
+                    PORT=9000
+
+                    NUM=`docker ps -a | grep $APP | wc -l`
+                    if [[ $NUM -gt 0 ]];then
+                        image=`docker ps -a | grep $APP | awk '{print $2}'`
+                        docker rm -f $APP;
+                    fi
+
+                    docker run -d --rm -p ${PORT}:8080 -v /usr/share/fonts:/usr/share/fonts -v `pwd`/target/app:/usr/local/tomcat/webapps/ROOT --name $APP tomcat
+                '''
+            }
+        }
+    }
+}

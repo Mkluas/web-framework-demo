@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean install dockerfile:build'
+            }
+        }
+
+        stage('Deliver') {
+            steps {
+                sh 'dkill app'
+                sh 'docker run -d --rm -p 9000:8080 -u root --name app klaus/web-demo'
+            }
+        }
+    }
+}

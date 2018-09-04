@@ -1,0 +1,10 @@
+FROM frolvlad/alpine-oraclejdk8:slim
+VOLUME /tmp
+ADD app.jar app.jar
+RUN sh -c 'touch /app.jar'
+ENV JAVA_OPTS=""
+EXPOSE 5005
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
+
+
+docker run -d -p 9000:9000 -p 5005:5005 --name demo web-base/web-example
