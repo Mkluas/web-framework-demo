@@ -11,12 +11,22 @@
     <packaging>war</packaging>
     <artifactId>web-framework-demo</artifactId>
 
+    <properties>
+        <druid.version>1.1.6</druid.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
             <groupId>cn.mklaus.framework</groupId>
             <artifactId>web-framework</artifactId>
-            <version>0.1.6</version>
+            <version>0.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
         </dependency>
 
         <!-- Swagger -->
@@ -99,7 +109,6 @@
                 <version>3.0.0</version>
             </plugin>
        </plugins>
-
    </build>
 
 
