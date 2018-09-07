@@ -1,5 +1,7 @@
 package cn.mklaus.demo.web;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AdminControllerTest extends AbstractShiroTest {
 
     private MockHttpSession session;
+    private Integer adminId;
 
     @Autowired
     protected MockMvc mvc;
@@ -44,7 +48,6 @@ public class AdminControllerTest extends AbstractShiroTest {
     public void tearDown() {
 
     }
-
 
     // 加上注解回滚
     @Transactional
@@ -62,25 +65,22 @@ public class AdminControllerTest extends AbstractShiroTest {
                 .param("mobile", mobile)
                 .param("email", email);
 
-        mvc.perform(save)
+        MvcResult result = mvc.perform(save)
                 .andDo(print())
                 .andExpect(jsonPath("admin.account").value(account))
                 .andExpect(jsonPath("admin.username").value(username))
                 .andExpect(jsonPath("admin.mobile").value(mobile))
                 .andExpect(jsonPath("admin.email").value(email))
                 .andExpect(jsonPath("admin.id").isNumber())
-                .andExpect(logicOk());
+                .andExpect(logicOk())
+                .andReturn();
+
+        JSONObject data = JSON.parseObject(result.getResponse().getContentAsString());
+        this.adminId = data.getJSONObject("admin").getInteger("id");
     }
 
     @Test
     public void listAdmin() throws Exception {
-        mvc.perform(get("/admin/list").session(session))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void afterAdmin() throws Exception {
         mvc.perform(get("/admin/list").session(session))
                 .andDo(print())
                 .andExpect(status().isOk());
