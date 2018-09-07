@@ -38,7 +38,7 @@ public class DataInitListener implements ApplicationListener<ContextRefreshedEve
             AdminVO adminVO = new AdminVO();
             adminVO.setAccount("admin");
             adminVO.setUsername("超级管理员");
-            adminVO.setEmail("admin@zimple.com");
+            adminVO.setEmail("xie.jinye@163.com");
             adminVO.setMobile("18888888888");
             adminService.saveAdmin(adminVO);
         }

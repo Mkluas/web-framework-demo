@@ -1,0 +1,2 @@
+insert into t_admin(account, password, salt, username, mobile, email, creator, ct, ut, version) values ('admin', '17edb8dbb2352562909718714700ccf6', '5ec1584e4ee14e7683565815ebfa5fe3', '超级管理员', '18888888888', 'admin@163.com', 'root', 1531063754, 1531063754, 0);
+insert into t_admin(account, password, salt, username, mobile, email, creator, ct, ut, version) values ('test', 'b6f64a7c32f6bf9f145b67aa30cab8d3', '8d5b5ff4fef2496c8a8705f6bfbfe003',	'测试员', '16789789789',	'test@163.com', '超级管理员', 1531225050,	1531225050,	0);
