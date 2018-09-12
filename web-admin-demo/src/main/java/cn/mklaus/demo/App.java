@@ -3,6 +3,7 @@ package cn.mklaus.demo;
 import org.springframework.boot.Banner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
  */
 @EnableAsync
 @SpringBootApplication
-public class App {
+public class App extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(App.class)
