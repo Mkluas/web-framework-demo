@@ -17,4 +17,9 @@ public class DemoController {
         return "demo/qiniu";
     }
 
+    @GetMapping("code")
+    public String code() {
+        return "demo/code";
+    }
+
 }
