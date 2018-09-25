@@ -55,7 +55,7 @@
                     return;
                 }
                 this.send = true;
-                var self = this;
+                let self = this;
                 post({
                     url: "/api/code/send",
                     loadingText: '请求中',
@@ -63,7 +63,7 @@
                     success: function () {
                         var second = 60;
                         var interval = setInterval(function () {
-                            if (second-- < 1) {
+                            if (--second < 1) {
                                 self.send = false;
                                 self.codeText = "获取验证码";
                                 clearInterval(interval)

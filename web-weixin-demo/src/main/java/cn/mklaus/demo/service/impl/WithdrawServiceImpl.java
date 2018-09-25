@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 /**
+ * 参考：https://pay.weixin.qq.com/wiki/doc/api/index.html
+ *
  * @author klaus
  * @date 2018/9/25 3:03 PM
  */
