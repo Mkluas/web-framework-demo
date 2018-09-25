@@ -1,4 +1,4 @@
-<@override name="title">七牛上传</@override>
+<@override name="title">短信验证码</@override>
 
 <@override name="css">
 <style>
@@ -64,7 +64,8 @@
                         var second = 60;
                         var interval = setInterval(function () {
                             if (second-- < 1) {
-                                this.send = false;
+                                self.send = false;
+                                self.codeText = "获取验证码";
                                 clearInterval(interval)
                             } else {
                                 self.codeText = second + " 秒";
