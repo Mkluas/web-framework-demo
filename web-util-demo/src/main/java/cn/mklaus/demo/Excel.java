@@ -12,6 +12,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author klaus
@@ -22,11 +24,13 @@ public class Excel {
     private static String FILE_PATH = "/Users/klaus/Desktop/poi.xls";
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
-        saveDemo();
+        User u1 = new User("xie", "男", 20);
+        User u2 = new User("ccc", "女", 25);
+        saveDemo(Arrays.asList(u1, u2));
         readDemo();
     }
 
-    private static void saveDemo() throws IOException {
+    private static void saveDemo(List<User> list) throws IOException {
         // 创建工作薄
         HSSFWorkbook workbook = new HSSFWorkbook();
         // 创建工作表
@@ -37,11 +41,12 @@ public class Excel {
         hrow.createCell(1).setCellValue("性别");
         hrow.createCell(2).setCellValue("年龄");
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i <= list.size(); i++) {
+            User user = list.get(i-1);
             HSSFRow row = sheet.createRow(i);
-            row.createCell(0).setCellValue("name" + i);
-            row.createCell(1).setCellValue("男");
-            row.createCell(2).setCellValue(20 + i);
+            row.createCell(0).setCellValue(user.name);
+            row.createCell(1).setCellValue(user.sex);
+            row.createCell(2).setCellValue(user.age);
         }
 
         File xlsFile = new File(FILE_PATH);
@@ -75,6 +80,19 @@ public class Excel {
                 }
                 System.out.println();
             }
+        }
+    }
+
+
+
+    static class User {
+        private String name;
+        private String sex;
+        private Integer age;
+        public User(String name, String sex, Integer age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
         }
     }
 
