@@ -40,6 +40,14 @@ public class Withdraw extends BaseEntity {
     @ColDefine(customType = "decimal(10,2)")
     private BigDecimal money;
 
+    @Column
+    @Default("")
+    private String paymentNo;
+
+    @Column
+    @Default("")
+    private String paymentTime;
+
     @Column(hump = true)
     @Default("ok")
     @ColDefine(width = 255)

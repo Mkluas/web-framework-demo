@@ -43,8 +43,7 @@ public class WithdrawServiceImpl extends BaseServiceImpl<Withdraw> implements Wi
         withdraw.setOpenid(user.getOpenid());
         withdraw.setMoney(money);
         withdraw.setPartnerTradeNo(OrderNoEnum.PARTNER_TRADE_NO.next());
-        withdraw.setDone(true);
-        withdraw.setMsg("ok");
+        withdraw.setDone(false);
         insert(withdraw);
 
         EntPayRequest entPayRequest = EntPayRequest.newBuilder()
@@ -58,8 +57,12 @@ public class WithdrawServiceImpl extends BaseServiceImpl<Withdraw> implements Wi
 
         try {
             EntPayResult result = wxPayService.getEntPayService().entPay(entPayRequest);
+            withdraw.setPaymentNo(result.getPaymentNo());
+            withdraw.setPaymentTime(result.getPaymentTime());
+            withdraw.setDone(true);
+            withdraw.setMsg("ok");
+            update(withdraw);
         } catch (WxPayException e) {
-            withdraw.setDone(false);
             withdraw.setMsg(e.toString());
             update(withdraw);
             return ServiceResult.error(e.toString());
