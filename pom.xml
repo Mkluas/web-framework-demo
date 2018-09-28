@@ -12,6 +12,7 @@
         <module>web-framework-demo</module>
         <module>web-weixin-demo</module>
         <module>web-admin-demo</module>
+        <module>web-util-demo</module>
     </modules>
 
     <properties>
