@@ -15,14 +15,17 @@ Vue.filter("img", function (value, w, h, q) {
 });
 
 Vue.filter("short", function (value, len) {
+    if (!value) {
+        return "";
+    }
     if (!len) {
         len = 10;
     }
-   if (value.length <= len) {
+    if (value.length <= len) {
        return value;
-   } else {
+    } else {
        return value.substring(0, len) + '...';
-   }
+    }
 });
 
 function parseTime(time, cFormat) {
