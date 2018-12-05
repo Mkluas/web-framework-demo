@@ -25,6 +25,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import java.io.IOException;
+
 import static org.apache.shiro.web.util.WebUtils.SAVED_REQUEST_KEY;
 
 /**
@@ -52,6 +54,12 @@ public class AuthController {
         return Response.error(BaseErrorEnum.ACCOUNT_UNAUTHENTICATED)
                 .put("requestURI", requestURI)
                 .build();
+    }
+
+    @ApiIgnore
+    @GetMapping(value = "error", produces = {"text/html"})
+    public void notLoginHtml(HttpServletResponse resp) throws IOException {
+        resp.sendRedirect("/auth/login");
     }
 
     @ApiIgnore
