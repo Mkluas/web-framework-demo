@@ -12,6 +12,13 @@
     <artifactId>web-util-demo</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>cn.mklaus.framework</groupId>
+            <artifactId>web-framework</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <!-- Excel -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -22,6 +29,13 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.14</version>
+        </dependency>
+
+        <!-- Email -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>1.5.10.RELEASE</version>
         </dependency>
 
     </dependencies>

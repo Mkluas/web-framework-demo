@@ -1,0 +1,10 @@
+spring:
+  mail:
+    host: smtp.qq.com
+    username: 960315908@qq.com
+    password: jrjswmdrlpnxbahj
+    port: 587
+
+mail:
+  from:
+    address: 960315908@qq.com
