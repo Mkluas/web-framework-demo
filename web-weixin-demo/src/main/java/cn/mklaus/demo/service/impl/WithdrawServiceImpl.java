@@ -99,7 +99,7 @@ public class WithdrawServiceImpl extends BaseServiceImpl<Withdraw> implements Wi
         return ServiceResult.ok();
     }
 
-    public int getTotalMoney(BigDecimal money) {
+    private int getTotalMoney(BigDecimal money) {
         return money.multiply(BigDecimal.valueOf(100)).intValue();
     }
 

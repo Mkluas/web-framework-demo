@@ -22,4 +22,20 @@ public class DemoController {
         return "demo/code";
     }
 
+    @GetMapping("qrcode")
+    public String qrcode() {
+        return "demo/qrcode";
+    }
+
+    @GetMapping("quill")
+    public String quill() {
+        return "demo/quill";
+    }
+
+    @GetMapping("quill/show")
+    public String quillShow() {
+        return "demo/quill_show";
+    }
+
+
 }
