@@ -18,9 +18,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.mklaus.framework</groupId>
+            <groupId>com.github.mkluas</groupId>
             <artifactId>web-weixin</artifactId>
-            <version>0.2.0</version>
+            <version>1.0.2</version>
         </dependency>
 
         <dependency>

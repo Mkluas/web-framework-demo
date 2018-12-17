@@ -1,5 +1,6 @@
 package cn.mklaus.demo.service;
 
+import cn.mklaus.framework.bean.ServiceResult;
 import me.chanjar.weixin.common.bean.WxJsapiSignature;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
@@ -15,5 +16,7 @@ public interface WechatService {
     WxMpXmlOutMessage route(WxMpXmlMessage inMessage);
 
     WxJsapiSignature createSignature(HttpServletRequest req);
+
+    ServiceResult createMenu();
 
 }
