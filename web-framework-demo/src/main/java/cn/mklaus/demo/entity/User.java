@@ -1,6 +1,7 @@
 package cn.mklaus.demo.entity;
 
 import cn.mklaus.framework.base.BaseEntity;
+import cn.mklaus.framework.base.BaseTimestampEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -16,9 +17,9 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@ToString
+@ToString(callSuper = true)
 @Table("t_user")
-public class User extends BaseEntity {
+public class User extends BaseTimestampEntity {
 
     @Column(hump = true)
     @Default("")
