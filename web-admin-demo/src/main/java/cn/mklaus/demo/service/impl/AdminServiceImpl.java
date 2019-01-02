@@ -89,6 +89,8 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
                 .email(adminVO.getEmail())
                 .build();
 
+        System.out.println("updateAdmin = " + updateAdmin);
+
         updateAdmin.setId(admin.getId());
         updateAdmin.setUpdateTime(Times.now());
         updateIgnoreNull(updateAdmin);

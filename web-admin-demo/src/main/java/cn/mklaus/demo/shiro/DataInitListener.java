@@ -33,7 +33,7 @@ public class DataInitListener implements ApplicationListener<ContextRefreshedEve
     }
 
     private void initAdminData() {
-        if (dao.count(Admin.class, Cnd.format("account = %s", Config.ADMIN_ROOT_ACCOUNT)) == 0) {
+        if (dao.count(Admin.class, Cnd.format("account = '%s'", Config.ADMIN_ROOT_ACCOUNT)) == 0) {
             Logs.get().info("Init admin data");
 
             AdminVO adminVO = new AdminVO();

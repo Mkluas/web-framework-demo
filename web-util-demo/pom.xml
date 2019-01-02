@@ -14,10 +14,11 @@
     <dependencies>
 
         <dependency>
-            <groupId>cn.mklaus.framework</groupId>
+            <groupId>com.github.mkluas</groupId>
             <artifactId>web-framework</artifactId>
-            <version>1.0.2</version>
+            <version>1.0.3</version>
         </dependency>
+
 
         <!-- Excel -->
         <dependency>
