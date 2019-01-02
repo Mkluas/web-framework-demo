@@ -1,5 +1,7 @@
 package cn.mklaus.demo.vo;
 
+import cn.mklaus.framework.bean.Save;
+import cn.mklaus.framework.bean.Update;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

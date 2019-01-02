@@ -3,9 +3,9 @@ package cn.mklaus.demo.service;
 import cn.mklaus.demo.dto.AdminDTO;
 import cn.mklaus.demo.entity.Admin;
 import cn.mklaus.demo.vo.AdminVO;
-import cn.mklaus.demo.vo.PageVO;
 import cn.mklaus.demo.vo.PasswdVO;
 import cn.mklaus.framework.base.BaseService;
+import cn.mklaus.framework.bean.PageVO;
 import cn.mklaus.framework.bean.Pagination;
 import cn.mklaus.framework.bean.ServiceResult;
 

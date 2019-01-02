@@ -1,6 +1,7 @@
 package cn.mklaus.demo.shiro;
 
 
+import cn.mklaus.demo.conf.Config;
 import cn.mklaus.demo.entity.Admin;
 import cn.mklaus.demo.service.AdminService;
 import cn.mklaus.demo.vo.AdminVO;
@@ -32,11 +33,11 @@ public class DataInitListener implements ApplicationListener<ContextRefreshedEve
     }
 
     private void initAdminData() {
-        if (dao.count(Admin.class, Cnd.format("account = 'admin'")) == 0) {
+        if (dao.count(Admin.class, Cnd.format("account = %s", Config.ADMIN_ROOT_ACCOUNT)) == 0) {
             Logs.get().info("Init admin data");
 
             AdminVO adminVO = new AdminVO();
-            adminVO.setAccount("admin");
+            adminVO.setAccount(Config.ADMIN_ROOT_ACCOUNT);
             adminVO.setUsername("超级管理员");
             adminVO.setEmail("xie.jinye@163.com");
             adminVO.setMobile("18888888888");

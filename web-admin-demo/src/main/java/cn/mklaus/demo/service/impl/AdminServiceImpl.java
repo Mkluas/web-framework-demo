@@ -1,13 +1,14 @@
 package cn.mklaus.demo.service.impl;
 
+import cn.mklaus.demo.conf.Config;
 import cn.mklaus.demo.dto.AdminDTO;
 import cn.mklaus.demo.entity.Admin;
 import cn.mklaus.demo.service.AdminService;
 import cn.mklaus.demo.vo.AdminVO;
-import cn.mklaus.demo.vo.PageVO;
 import cn.mklaus.demo.vo.PasswdVO;
 import cn.mklaus.framework.base.BaseServiceImpl;
 import cn.mklaus.framework.bean.BaseErrorEnum;
+import cn.mklaus.framework.bean.PageVO;
 import cn.mklaus.framework.bean.Pagination;
 import cn.mklaus.framework.bean.ServiceResult;
 import cn.mklaus.framework.util.Langs;
@@ -29,10 +30,6 @@ import org.springframework.util.Assert;
 @Service
 public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminService {
 
-    private static final String DEFAULT_PASSWORD = "12345678";
-    private static final String HASH_ALGORITHM = "md5";
-    private static final int HASH_ITERATIONS = 2;
-
     @Override
     public AdminDTO getAdmin(int adminId) {
         Admin fetch = fetch(adminId);
@@ -46,7 +43,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
         }
 
         String salt = Langs.uuid();
-        String passwordHash = this.hashPassword(adminVO.getAccount(), salt, DEFAULT_PASSWORD);
+        String passwordHash = this.hashPassword(adminVO.getAccount(), salt, Config.ADMIN_DEFAULT_PASSWORD);
 
         Admin admin = Admin.builder()
                 .account(adminVO.getAccount())
@@ -109,7 +106,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
         Admin deleteAdmin = fetch(adminId);
         Assert.notNull(deleteAdmin, "管理员不存在: " + adminId);
 
-        if ("admin".equals(deleteAdmin.getAccount())) {
+        if (Config.ADMIN_ROOT_ACCOUNT.equals(deleteAdmin.getAccount())) {
             return ServiceResult.error("不能删除超级管理员");
         }
 
@@ -140,7 +137,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
 
         String account = admin.getAccount();
         String salt = admin.getSalt();
-        String newPasswordHash = this.hashPassword(account, salt, DEFAULT_PASSWORD);
+        String newPasswordHash = this.hashPassword(account, salt, Config.ADMIN_DEFAULT_PASSWORD);
         update(Chain.make("password", newPasswordHash), Cnd.where("id", "=", adminId));
 
         return ServiceResult.ok();
@@ -151,7 +148,7 @@ public class AdminServiceImpl extends BaseServiceImpl<Admin> implements AdminSer
     }
 
     private String hashPassword(String account, String salt, String password) {
-        SimpleHash hash = new SimpleHash(HASH_ALGORITHM, password, account + salt, HASH_ITERATIONS);
+        SimpleHash hash = new SimpleHash(Config.PASSWORD_HASH_ALGORITHM, password, account + salt, Config.PASSWORD_HASH_ITERATIONS);
         return hash.toHex();
     }
 

@@ -2,10 +2,9 @@ package cn.mklaus.demo.web;
 
 import cn.mklaus.demo.dto.AdminDTO;
 import cn.mklaus.demo.service.AdminService;
-import cn.mklaus.demo.vo.*;
-import cn.mklaus.framework.bean.Pagination;
-import cn.mklaus.framework.bean.Response;
-import cn.mklaus.framework.bean.ServiceResult;
+import cn.mklaus.demo.vo.AdminVO;
+import cn.mklaus.demo.vo.PasswdVO;
+import cn.mklaus.framework.bean.*;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
