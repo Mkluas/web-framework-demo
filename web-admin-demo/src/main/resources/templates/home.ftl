@@ -4,6 +4,9 @@
 </@override>
 
 <@override name="content">
+<div id="app">
+    Welcome
+</div>
 </@override>
 
 <@override name="js">

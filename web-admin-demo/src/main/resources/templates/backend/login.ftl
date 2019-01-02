@@ -1,4 +1,4 @@
-<@override name="title">Calculog</@override>
+<@override name="title"></@override>
 
 <@override name="css">
 <style>
