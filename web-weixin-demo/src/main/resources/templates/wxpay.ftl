@@ -88,7 +88,7 @@
 </@override>
 
 <@override name="js">
-<script src="/static/js/jweixin-1.2.0.js"></script>
+<script src="/static//jweixin-1.2.0.js"></script>
 <script>
     wx.config({
         debug: false,
