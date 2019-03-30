@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.nutz.dao.entity.annotation.Column;
-import org.nutz.dao.entity.annotation.Comment;
-import org.nutz.dao.entity.annotation.Default;
-import org.nutz.dao.entity.annotation.Table;
+import org.nutz.dao.entity.annotation.*;
 
 /**
  * @author klaus
@@ -31,10 +28,12 @@ public class User extends BaseEntity {
 
     @Column
     @Default("")
+    @ColDefine(width = 255)
     private String headimgurl;
 
     @Column
     @Default("")
+    @ColDefine(customType = "varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci")
     private String nickname;
 
     @Column

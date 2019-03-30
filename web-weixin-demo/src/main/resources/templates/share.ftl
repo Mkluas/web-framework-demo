@@ -12,7 +12,7 @@
 </@override>
 
 <@override name="js">
-<script src="/static/plugin/weixin/jweixin-1.2.0.js"></script>
+<script src="/static/plugin/weixin/jweixin-1.4.0.js"></script>
 <script>
     <#--
         参考链接
@@ -24,11 +24,11 @@
         timestamp: '${(wx.timestamp?c)!}',
         nonceStr: '${(wx.nonceStr)!}',
         signature: '${(wx.signature)!}',
-        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage']
+        jsApiList: ['updateAppMessageShareData', 'updateTimelineShareData']
     });
     wx.ready(function(){
-        wx.onMenuShareTimeline(app.share);
-        wx.onMenuShareAppMessage(app.share);
+        wx.updateAppMessageShareData(app.share);
+        wx.updateTimelineShareData(app.share);
     });
     wx.ready(function(){
 

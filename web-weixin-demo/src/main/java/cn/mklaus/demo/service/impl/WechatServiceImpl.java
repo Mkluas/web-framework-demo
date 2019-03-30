@@ -2,6 +2,7 @@ package cn.mklaus.demo.service.impl;
 
 import cn.mklaus.demo.handle.ScanQrCodeHandler;
 import cn.mklaus.demo.handle.SubscribeHandler;
+import cn.mklaus.demo.handle.UnSubscribeHandler;
 import cn.mklaus.demo.service.WechatService;
 import cn.mklaus.framework.bean.ServiceResult;
 import cn.mklaus.framework.wechat.WechatProperties;
@@ -43,6 +44,8 @@ public class WechatServiceImpl implements WechatService, InitializingBean {
     @Autowired
     private SubscribeHandler subscribeHandler;
     @Autowired
+    private UnSubscribeHandler unSubscribeHandler;
+    @Autowired
     private ScanQrCodeHandler scanQrCodeHandler;
 
     @Override
@@ -81,6 +84,12 @@ public class WechatServiceImpl implements WechatService, InitializingBean {
                 .event(WxConsts.EventType.SUBSCRIBE)
                 .handler(this.subscribeHandler)
                 .next();
+
+        // unSubscribe event
+        newRouter.rule().async(false).msgType(WxConsts.XmlMsgType.EVENT)
+                .event(WxConsts.EventType.UNSUBSCRIBE)
+                .handler(this.unSubscribeHandler)
+                .end();
 
         // scan QRCode event
         newRouter.rule().async(false).msgType(WxConsts.XmlMsgType.EVENT)

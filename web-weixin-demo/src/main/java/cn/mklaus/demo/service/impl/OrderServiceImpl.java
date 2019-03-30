@@ -49,6 +49,7 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
     public ServiceResult saveOrder(Order order) {
         // TODO: 2018/9/25 init order.
 
+        order.setStatus(Order.Status.NEW);
         order.setOutTradeNo(OrderNoEnum.OUT_TRADE_NO.next());
         insert(order);
         return ServiceResult.ok();
